@@ -41,3 +41,22 @@ document.getElementById('enquiryForm').addEventListener('submit', e => {
   e.preventDefault();
   submitForm(e.target, 'enquiry', f => ({ parentName: f.parentName, phone: f.phone, email: f.email, category: f.category, message: f.message }));
 });
+
+// Mobile navigation toggle
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+if (navToggle && navMenu) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
